@@ -12,6 +12,12 @@ const Inscription = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [samePassword, setSamePassword] = useState("");
+    const passwordHasValidLength = password.length >= 12;
+    const passwordHasLowercaseLetter = /[a-z]/.test(password);
+    const passwordHasUppercaseLetter = /[A-Z]/.test(password);
+    const passwordHasSpecialCharacter = /[!@#$%^&*()\\[\]{}\-_+=~`|:;"'<>,./?]/.test(password)
+    const passwordHasNumber = /[0-9]/.test(password);
+
 
 
 
@@ -110,7 +116,18 @@ const Inscription = () => {
                 </div>
                 <div className="text_zone">
                     <i className="fa-sharp fa-solid fa-lock"></i>
-                    <input type="password" placeholder='Mot de passe' onChange={(e) => setPassword(e.target.value)} />
+                    <input type="password" placeholder='Mot de passe' onChange={(e) => setPassword(e.target.value)} /> 
+                </div>
+                <div className='text_zone'>
+                <label style={{color: passwordHasValidLength ? 'green' : 'red'}}>Mot de passe de 12 caractères </label>
+                    <br />
+                    <label style={{color: passwordHasLowercaseLetter? 'green' : 'red'}}>Min 1 caractère minuscule</label>
+                    <br />
+                    <label style={{color: passwordHasUppercaseLetter? 'green' : 'red'}}>Min 1 caractère majuscule</label>
+                    <br />
+                    <label style={{color: passwordHasNumber? 'green' : 'red'}}>Min 1 nombre</label>
+                    <br />
+                    <label style={{color: passwordHasSpecialCharacter? 'green' : 'red'}}>Min 1 caractère spécial</label>
                 </div>
                 <div className="text_zone">
                     <i className="fa-sharp fa-solid fa-lock"></i>
